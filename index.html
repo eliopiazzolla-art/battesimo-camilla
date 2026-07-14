@@ -2,12 +2,12 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Battesimo di Camilla</title>
 
-  <!-- Tag Meta per l'anteprima WhatsApp -->
-  <meta property="og:title" content="Battesimo di Camilla 🌸">
-  <meta property="og:description" content="Clicca qui per aprire l'invito interattivo!">
+  <!-- Tag Meta per l'anteprima WhatsApp ridotta al minimo -->
+  <meta property="og:title" content="Apri l'invito 🌸">
+  <meta property="og:description" content=" ">
   <meta property="og:image" content="https://eliopiazzolla-art.github.io/battesimo-camilla/invito.png">
   <meta property="og:image:secure_url" content="https://eliopiazzolla-art.github.io/battesimo-camilla/invito.png">
   <meta property="og:image:type" content="image/png">
@@ -17,27 +17,33 @@
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow-x: hidden;
       background-color: #f4ece8;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
       font-family: 'Helvetica Neue', Arial, sans-serif;
     }
     .card-container {
       position: relative;
-      width: 100%;
-      max-width: 480px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-      border-radius: 12px;
+      width: 100vw;
+      height: 100vh;
+      max-width: 500px; /* Limite per schermo PC */
+      max-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       overflow: hidden;
       background-color: #fff;
     }
     .card-image {
       width: 100%;
+      height: 100%;
+      object-fit: contain; /* Adatta l'immagine perfettamente allo schermo */
       display: block;
-      height: auto;
     }
 
     /* Hotspot trasparenti */
@@ -52,7 +58,7 @@
       background-color: rgba(255, 255, 255, 0.2);
     }
 
-    /* Posizionamento pulsanti */
+    /* Posizionamento pulsanti proporzionale */
     .btn-chiesa { top: 76.5%; left: 18%; width: 23%; height: 8%; }
     .btn-ristorante { top: 76.5%; left: 43%; width: 23%; height: 8%; }
     .btn-regalo { top: 76.5%; left: 68%; width: 23%; height: 8%; }
