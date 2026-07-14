@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Battesimo di Camilla</title>
 
-  <!-- Tag Meta per l'anteprima WhatsApp (URL ASSOLUTI) -->
+  <!-- Tag Meta per l'anteprima WhatsApp -->
   <meta property="og:title" content="Battesimo di Camilla 🌸">
-  <meta property="og:description" content="Clicca per aprire l'invito interattivo!">
+  <meta property="og:description" content="Clicca qui per aprire l'invito interattivo!">
   <meta property="og:image" content="https://eliopiazzolla-art.github.io/battesimo-camilla/invito.png">
   <meta property="og:image:secure_url" content="https://eliopiazzolla-art.github.io/battesimo-camilla/invito.png">
   <meta property="og:image:type" content="image/png">
@@ -216,13 +216,12 @@
     </div>
   </div>
 
-  <!-- Pop-up Modal Regalo IBAN con QR Code e Frase Personalizzata -->
+  <!-- Pop-up Modal Regalo IBAN -->
   <div id="ibanModal" class="modal">
     <div class="modal-content">
       <h3>Pensiero per Camilla 🌸</h3>
       <p>La vostra partecipazione è la cosa che conta di più per noi.<br>Se volete contribuire con un piccolo pensiero per la crescita e i sogni futuri di Camilla:</p>
       
-      <!-- Immagine QR Code creata automaticamente dall'IBAN -->
       <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=IT85T0306909540100000009299" alt="QR Code IBAN" class="qr-code-img">
 
       <div class="iban-box">
@@ -234,7 +233,6 @@
   </div>
 
   <script>
-    // Il tuo numero di telefono preimpostato
     const mioNumero = "393474914301";
 
     function openModal(id) {
@@ -260,7 +258,6 @@
       closeModal('rsvpModal');
     }
 
-    // Chiudi popup cliccando fuori
     window.onclick = function(event) {
       if (event.target.classList.contains('modal')) {
         event.target.style.display = "none";
