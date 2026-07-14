@@ -1,5 +1,3 @@
-HTML
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -38,7 +36,7 @@ HTML
       height: auto;
     }
 
-    /* Hotspot trasparente e interattivo posizionato sopra l'immagine */
+    /* Hotspot trasparenti */
     .link-area {
       position: absolute;
       cursor: pointer;
@@ -50,7 +48,7 @@ HTML
       background-color: rgba(255, 255, 255, 0.2);
     }
 
-    /* Posizionamento relativo alla grafica originale */
+    /* Posizionamento pulsanti */
     .btn-chiesa { top: 76.5%; left: 18%; width: 23%; height: 8%; }
     .btn-ristorante { top: 76.5%; left: 43%; width: 23%; height: 8%; }
     .btn-regalo { top: 76.5%; left: 68%; width: 23%; height: 8%; }
@@ -58,7 +56,7 @@ HTML
     .btn-si { top: 93.2%; left: 15%; width: 33%; height: 4.2%; }
     .btn-no { top: 93.2%; left: 51%; width: 34%; height: 4.2%; }
 
-    /* Finestra Pop-up IBAN (Modal) */
+    /* Finestre Pop-up (Modal) */
     .modal {
       display: none;
       position: fixed;
@@ -84,8 +82,33 @@ HTML
       from { opacity: 0; transform: scale(0.9); }
       to { opacity: 1; transform: scale(1); }
     }
-    .modal-content h3 { color: #8e505a; margin-bottom: 10px; }
+    .modal-content h3 { color: #8e505a; margin-bottom: 12px; }
     .modal-content p { color: #555; font-size: 0.95rem; margin-bottom: 15px; line-height: 1.4; }
+    
+    /* Form Selezione Partecipanti */
+    .counter-group {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      background: #fdf5f5;
+      padding: 10px 15px;
+      border-radius: 12px;
+      border: 1px solid #f0d6d8;
+    }
+    .counter-group label {
+      font-weight: bold;
+      color: #444;
+    }
+    .counter-group select {
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid #d19ba3;
+      font-size: 1rem;
+      background: white;
+      outline: none;
+    }
+
     .iban-box {
       background: #fdf5f5;
       border: 1px dashed #d19ba3;
@@ -98,6 +121,18 @@ HTML
       word-break: break-all;
       margin-bottom: 15px;
     }
+    .btn-confirm {
+      background: #25d366;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      font-size: 0.95rem;
+      margin-top: 5px;
+    }
     .btn-close {
       background: #8e505a;
       color: white;
@@ -106,6 +141,7 @@ HTML
       border-radius: 20px;
       font-weight: bold;
       cursor: pointer;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -122,41 +158,93 @@ HTML
     <a href="https://www.google.com/maps/search/?api=1&query=Cascina+Quartiago+Bascape" 
        target="_blank" class="link-area btn-ristorante" title="Ristorante"></a>
 
-    <div onclick="openModal()" class="link-area btn-regalo" title="Pensiero per Camilla"></div>
+    <div onclick="openModal('ibanModal')" class="link-area btn-regalo" title="Pensiero per Camilla"></div>
 
-    <!-- Pulsanti Risposta WhatsApp (Sostituisci 393331234567 con il tuo numero) -->
-    <a href="https://wa.me/393331234567?text=Parteciper%C3%B2%20con%20gioia%20al%20battesimo%20di%20Camilla!" 
-       target="_blank" class="link-area btn-si" title="Sì, parteciperò"></a>
+    <!-- Pulsante SÌ (Apre il Pop-up Partecipanti) -->
+    <div onclick="openModal('rsvpModal')" class="link-area btn-si" title="Sì, parteciperò"></div>
 
-    <a href="https://wa.me/393331234567?text=Mi%20dispiace,%20non%20riuscir%C3%B2%20a%20partecipare%20al%20battesimo%20di%20Camilla." 
+    <!-- Pulsante NO -->
+    <a href="https://wa.me/393474914301?text=Mi%20dispiace,%20non%20riuscir%C3%B2%20a%20partecipare%20al%20battesimo%20di%20Camilla." 
        target="_blank" class="link-area btn-no" title="Mi dispiace, non potrò"></a>
+  </div>
+
+  <!-- Pop-up Modal Partecipanti (RSVP) -->
+  <div id="rsvpModal" class="modal">
+    <div class="modal-content">
+      <h3>Conferma la presenza 🌸</h3>
+      <p>Indica quanti sarete per aiutarci ad organizzare i posti al ristorante:</p>
+      
+      <div class="counter-group">
+        <label for="adults">Adulti:</label>
+        <select id="adults">
+          <option value="1">1</option>
+          <option value="2" selected>2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+
+      <div class="counter-group">
+        <label for="children">Bambini:</label>
+        <select id="children">
+          <option value="0" selected>0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </div>
+
+      <button class="btn-confirm" onclick="sendWhatsappRSVP()">Conferma e Invia su WhatsApp 📲</button>
+      <button class="btn-close" style="background:#aaa; padding: 6px 15px; font-size: 0.8rem;" onclick="closeModal('rsvpModal')">Annulla</button>
+    </div>
   </div>
 
   <!-- Pop-up Modal Regalo IBAN -->
   <div id="ibanModal" class="modal">
     <div class="modal-content">
-      <h3>Un pensiero per Camilla 🌸</h3>
-      <p>La vostra presenza è il dono più bello per noi, ma se volete farle un piccolo pensiero per il suo futuro:</p>
+      <h3>Pensiero per Camilla 🌸</h3>
+      <p>Niente lista nozze, niente soprammobili! 😉<br>Se volete farle un regalo, stiamo iniziando a riempire il suo salvadanaio per quando sarà grande:</p>
       <div class="iban-box">
-        IT 00 X 00000 00000 000000000000
+        IT85T0306909540100000009299
       </div>
-      <p style="font-size: 0.8rem; color: #777;">Intestato a: Genitori di Camilla</p>
-      <button class="btn-close" onclick="closeModal()">Chiudi</button>
+      <p style="font-size: 0.85rem; color: #555; font-weight: bold;">Intestato a:<br>Piazzolla Elio Antonio</p>
+      <button class="btn-close" onclick="closeModal('ibanModal')">Chiudi</button>
     </div>
   </div>
 
   <script>
-    function openModal() {
-      document.getElementById('ibanModal').style.display = 'flex';
+    // Il tuo numero di telefono preimpostato
+    const mioNumero = "393474914301";
+
+    function openModal(id) {
+      document.getElementById(id).style.display = 'flex';
     }
-    function closeModal() {
-      document.getElementById('ibanModal').style.display = 'none';
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
     }
-    // Chiudi il popup se si clicca fuori dalla finestra
+
+    function sendWhatsappRSVP() {
+      const adulti = document.getElementById('adults').value;
+      const bambini = document.getElementById('children').value;
+      
+      let messaggio = `Ciao! Parteciperò con gioia al battesimo di Camilla! Saremo in totale: ${adulti} Adulti`;
+      if(bambini > 0) {
+        messaggio += ` e ${bambini} Bambini.`;
+      } else {
+        messaggio += `.`;
+      }
+
+      const url = `https://wa.me/${mioNumero}?text=${encodeURIComponent(messaggio)}`;
+      window.open(url, '_blank');
+      closeModal('rsvpModal');
+    }
+
+    // Chiudi popup cliccando fuori
     window.onclick = function(event) {
-      const modal = document.getElementById('ibanModal');
-      if (event.target == modal) {
-        modal.style.display = "none";
+      if (event.target.classList.contains('modal')) {
+        event.target.style.display = "none";
       }
     }
   </script>
