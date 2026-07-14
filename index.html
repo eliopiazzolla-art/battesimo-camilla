@@ -1,3 +1,5 @@
+HTML
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -21,37 +23,39 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-      background-color: #f4ece8;
+      background-color: #2c2523; /* Sfondo scuro elegante dietro la scheda */
       display: flex;
       justify-content: center;
       align-items: center;
       font-family: 'Helvetica Neue', Arial, sans-serif;
+      padding: 10px;
     }
 
-    /* Contenitore a Tutto Schermo Dinamico */
+    /* Card con stile Schermo Smartphone, Cornice e Angoli Arrotondati */
     .card-container {
       position: relative;
-      width: 100vw;
-      height: 100vh;
-      max-width: 500px; /* Limite massimo per Schermi PC */
+      width: 100%;
+      max-width: 420px;
+      height: 100%;
+      max-height: 92vh; /* Assicura che rientri sempre nello schermo senza tagliare nulla */
       display: flex;
       align-items: center;
       justify-content: center;
+      border-radius: 28px; /* Angoli arrotondati stile iPhone */
       overflow: hidden;
       background-color: #fff;
       
-      /* Elegante Cornice Interna */
-      border: 8px solid #f4ece8;
-      box-shadow: inset 0 0 0 2px #d19ba3;
+      /* Cornice ben visibile e raffinata */
+      border: 4px solid #f0d6d8;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 0 2px #d19ba3;
     }
 
     .card-image {
       width: 100%;
       height: 100%;
-      /* Riempie il 100% dello schermo adattandosi dinamicamente senza spazi bianchi */
-      object-fit: cover;
-      object-position: center;
+      object-fit: contain; /* Contiene tutta l'immagine visibile al 100% */
       display: block;
+      border-radius: 24px;
     }
 
     /* Hotspot trasparenti per i pulsanti */
@@ -81,7 +85,7 @@
       z-index: 10;
       left: 0; top: 0;
       width: 100%; height: 100%;
-      background-color: rgba(0, 0, 0, 0.6);
+      background-color: rgba(0, 0, 0, 0.7);
       justify-content: center;
       align-items: center;
       padding: 20px;
@@ -91,9 +95,9 @@
       padding: 25px;
       border-radius: 20px;
       text-align: center;
-      max-width: 380px;
+      max-width: 360px;
       width: 100%;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
       animation: fadeIn 0.3s ease;
     }
     @keyframes fadeIn {
