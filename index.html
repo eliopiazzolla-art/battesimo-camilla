@@ -20,7 +20,7 @@
     html, body {
       width: 100%;
       min-height: 100vh;
-      background-color: #f4ece8;
+      background-color: #fdf6f2;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -58,13 +58,14 @@
       background-color: rgba(255, 255, 255, 0.2);
     }
 
-    /* Posizionamento pulsanti */
-    .btn-chiesa { top: 76.5%; left: 18%; width: 23%; height: 8%; }
-    .btn-ristorante { top: 76.5%; left: 43%; width: 23%; height: 8%; }
-    .btn-regalo { top: 76.5%; left: 68%; width: 23%; height: 8%; }
+    /* Posizionamento pulsanti precisi sui cerchi e sui tasti in fondo */
+    .btn-chiesa { top: 69.5%; left: 15%; width: 25%; height: 13%; border-radius: 50%; }
+    .btn-ristorante { top: 69.5%; left: 42.5%; width: 25%; height: 13%; border-radius: 50%; }
+    .btn-regalo { top: 69.5%; left: 70%; width: 25%; height: 13%; border-radius: 50%; }
     
-    .btn-si { top: 93.2%; left: 15%; width: 33%; height: 4.2%; }
-    .btn-no { top: 93.2%; left: 51%; width: 34%; height: 4.2%; }
+    /* Tasti di risposta in fondo alla grafica */
+    .btn-si { top: 91.2%; left: 6%; width: 42%; height: 6.5%; }
+    .btn-no { top: 91.2%; left: 52%; width: 42%; height: 6.5%; }
 
     /* Finestre Pop-up (Modal) */
     .modal {
@@ -92,7 +93,7 @@
       from { opacity: 0; transform: scale(0.9); }
       to { opacity: 1; transform: scale(1); }
     }
-    .modal-content h3 { color: #8e505a; margin-bottom: 12px; }
+    .modal-content h3 { color: #db7a8b; margin-bottom: 12px; }
     .modal-content p { color: #555; font-size: 0.95rem; margin-bottom: 15px; line-height: 1.4; }
     
     /* Form Selezione Partecipanti */
@@ -113,7 +114,7 @@
     .counter-group select {
       padding: 6px 12px;
       border-radius: 8px;
-      border: 1px solid #d19ba3;
+      border: 1px solid #db7a8b;
       font-size: 1rem;
       background: white;
       outline: none;
@@ -132,7 +133,7 @@
 
     .iban-box {
       background: #fdf5f5;
-      border: 1px dashed #d19ba3;
+      border: 1px dashed #db7a8b;
       padding: 12px;
       border-radius: 10px;
       font-weight: bold;
@@ -142,8 +143,10 @@
       word-break: break-all;
       margin-bottom: 15px;
     }
+    
+    /* Pulsante di conferma dentro il pop-up coordinato */
     .btn-confirm {
-      background: #25d366;
+      background: #db7a8b;
       color: white;
       border: none;
       padding: 12px 20px;
@@ -153,9 +156,14 @@
       width: 100%;
       font-size: 0.95rem;
       margin-top: 5px;
+      transition: background-color 0.2s;
     }
+    .btn-confirm:active {
+      background: #c26575;
+    }
+    
     .btn-close {
-      background: #8e505a;
+      background: #aaa;
       color: white;
       border: none;
       padding: 10px 20px;
@@ -172,7 +180,7 @@
     <!-- Immagine dell'invito -->
     <img src="invito.png" alt="Invito Battesimo Camilla" class="card-image">
 
-    <!-- Aree Cliccabili -->
+    <!-- Aree Cliccabili sopra la grafica -->
     <a href="https://www.google.com/maps/search/?api=1&query=Chiesa+di+Sant%27Alessandro+Pieve+Emanuele" 
        target="_blank" class="link-area btn-chiesa" title="Chiesa"></a>
 
@@ -181,10 +189,9 @@
 
     <div onclick="openModal('ibanModal')" class="link-area btn-regalo" title="Pensiero per Camilla"></div>
 
-    <!-- Pulsante SÌ (Apre il Pop-up Partecipanti) -->
+    <!-- Pulsanti di risposta sovrapposti a quelli della foto -->
     <div onclick="openModal('rsvpModal')" class="link-area btn-si" title="Sì, parteciperò"></div>
 
-    <!-- Pulsante NO -->
     <a href="https://wa.me/393474914301?text=Mi%20dispiace,%20non%20riuscir%C3%B2%20a%20partecipare%20al%20battesimo%20di%20Camilla." 
        target="_blank" class="link-area btn-no" title="Mi dispiace, non potrò"></a>
   </div>
@@ -218,7 +225,7 @@
       </div>
 
       <button class="btn-confirm" onclick="sendWhatsappRSVP()">Conferma e Invia su WhatsApp 📲</button>
-      <button class="btn-close" style="background:#aaa; padding: 6px 15px; font-size: 0.8rem;" onclick="closeModal('rsvpModal')">Annulla</button>
+      <button class="btn-close" style="padding: 6px 15px; font-size: 0.8rem;" onclick="closeModal('rsvpModal')">Annulla</button>
     </div>
   </div>
 
@@ -234,7 +241,7 @@
         IT85T0306909540100000009299
       </div>
       <p style="font-size: 0.85rem; color: #555; font-weight: bold;">Intestato a:<br>Piazzolla Elio Antonio</p>
-      <button class="btn-close" onclick="closeModal('ibanModal')">Chiudi</button>
+      <button class="btn-close" style="background: #db7a8b;" onclick="closeModal('ibanModal')">Chiudi</button>
     </div>
   </div>
 
@@ -249,12 +256,12 @@
     }
 
     function sendWhatsappRSVP() {
-      const adulti = document.getElementById('adults').value;
-      const bambini = document.getElementById('children').value;
+      const adults = document.getElementById('adults').value;
+      const children = document.getElementById('children').value;
       
-      let messaggio = `Ciao! Parteciperò con gioia al battesimo di Camilla! Saremo in totale: ${adulti} Adulti`;
-      if(bambini > 0) {
-        messaggio += ` e ${bambini} Bambini.`;
+      let messaggio = `Ciao! Parteciperò con gioia al battesimo di Camilla! Saremo in totale: ${adults} Adulti`;
+      if(children > 0) {
+        messaggio += ` e ${children} Bambini.`;
       } else {
         messaggio += `.`;
       }
