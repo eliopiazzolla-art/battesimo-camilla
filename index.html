@@ -120,17 +120,6 @@
       outline: none;
     }
 
-    .qr-code-img {
-      width: 150px;
-      height: 150px;
-      margin: 10px auto 15px auto;
-      display: block;
-      border-radius: 10px;
-      border: 1px solid #f0d6d8;
-      padding: 5px;
-      background: #fff;
-    }
-
     .iban-box {
       background: #fdf5f5;
       border: 1px dashed #db7a8b;
@@ -141,6 +130,7 @@
       font-size: 0.88rem;
       color: #333;
       word-break: break-all;
+      margin-top: 10px;
       margin-bottom: 15px;
     }
     
@@ -192,7 +182,8 @@
     <!-- Pulsanti di risposta sovrapposti a quelli della foto -->
     <div onclick="openModal('rsvpModal')" class="link-area btn-si" title="Sì, parteciperò"></div>
 
-    <a href="https://wa.me/393474914301?text=Mi%20dispiace,%20non%20riuscir%C3%B2%20a%20partecipare%20al%20battesimo%20di%20Camilla." 
+    <!-- Pulsante NO con il nuovo numero aggiornato -->
+    <a href="https://wa.me/393293073918?text=Mi%20dispiace,%20non%20riuscir%C3%B2%20a%20partecipare%20al%20battesimo%20di%20Camilla." 
        target="_blank" class="link-area btn-no" title="Mi dispiace, non potrò"></a>
   </div>
 
@@ -229,13 +220,11 @@
     </div>
   </div>
 
-  <!-- Pop-up Modal Regalo IBAN -->
+  <!-- Pop-up Modal Regalo IBAN (Senza QR Code) -->
   <div id="ibanModal" class="modal">
     <div class="modal-content">
       <h3>Pensiero per Camilla 🌸</h3>
       <p>La vostra partecipazione è la cosa che conta di più per noi.<br>Se volete contribuire con un piccolo pensiero per la crescita e i sogni futuri di Camilla:</p>
-      
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=IT85T0306909540100000009299" alt="QR Code IBAN" class="qr-code-img">
 
       <div class="iban-box">
         IT85T0306909540100000009299
@@ -246,7 +235,8 @@
   </div>
 
   <script>
-    const mioNumero = "393474914301";
+    // Nuovo numero telefonico aggiornato
+    const mioNumero = "393293073918";
 
     function openModal(id) {
       document.getElementById(id).style.display = 'flex';
