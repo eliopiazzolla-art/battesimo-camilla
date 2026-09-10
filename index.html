@@ -7,7 +7,7 @@
 
   <!-- Tag Meta per l'anteprima WhatsApp -->
   <meta property="og:title" content="Apri l'invito 🌸">
-  <meta property="og:description" content=" ">
+  <meta property="og:description" content="Siamo felici di invitarvi al battesimo di Camilla!">
   <meta property="og:image" content="https://eliopiazzolla-art.github.io/battesimo-camilla/invito.png">
   <meta property="og:image:secure_url" content="https://eliopiazzolla-art.github.io/battesimo-camilla/invito.png">
   <meta property="og:image:type" content="image/png">
@@ -58,16 +58,15 @@
       background-color: rgba(255, 255, 255, 0.2);
     }
 
-    /* Posizionamento pulsanti precisi sui cerchi e sui tasti in fondo */
+    /* Posizionamento pulsanti sui cerchi e sui tasti in fondo */
     .btn-chiesa { top: 69.5%; left: 15%; width: 25%; height: 13%; border-radius: 50%; }
     .btn-ristorante { top: 69.5%; left: 42.5%; width: 25%; height: 13%; border-radius: 50%; }
     .btn-regalo { top: 69.5%; left: 70%; width: 25%; height: 13%; border-radius: 50%; }
     
-    /* Tasti di risposta in fondo alla grafica */
     .btn-si { top: 91.2%; left: 6%; width: 42%; height: 6.5%; }
     .btn-no { top: 91.2%; left: 52%; width: 42%; height: 6.5%; }
 
-    /* Finestre Pop-up (Modal) */
+    /* Pop-up (Modal) */
     .modal {
       display: none;
       position: fixed;
@@ -101,7 +100,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
       background: #fdf5f5;
       padding: 10px 15px;
       border-radius: 12px;
@@ -120,6 +119,27 @@
       outline: none;
     }
 
+    .notes-group {
+      text-align: left;
+      margin-bottom: 15px;
+    }
+    .notes-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: bold;
+      color: #555;
+      margin-bottom: 5px;
+    }
+    .notes-group input {
+      width: 100%;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid #f0d6d8;
+      background: #fdf5f5;
+      font-size: 0.9rem;
+      outline: none;
+    }
+
     .iban-box {
       background: #fdf5f5;
       border: 1px dashed #db7a8b;
@@ -131,10 +151,23 @@
       color: #333;
       word-break: break-all;
       margin-top: 10px;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
     }
     
-    /* Pulsante di conferma dentro il pop-up coordinato */
+    .btn-copy {
+      background: #e8a7b3;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 15px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 15px;
+      transition: background 0.2s;
+    }
+    .btn-copy:active { background: #db7a8b; }
+
     .btn-confirm {
       background: #db7a8b;
       color: white;
@@ -148,9 +181,7 @@
       margin-top: 5px;
       transition: background-color 0.2s;
     }
-    .btn-confirm:active {
-      background: #c26575;
-    }
+    .btn-confirm:active { background: #c26575; }
     
     .btn-close {
       background: #aaa;
@@ -167,27 +198,24 @@
 <body>
 
   <div class="card-container">
-    <!-- Immagine dell'invito -->
     <img src="invito.png" alt="Invito Battesimo Camilla" class="card-image">
 
-    <!-- Aree Cliccabili sopra la grafica -->
-    <a href="https://www.google.com/maps/search/?api=1&query=Chiesa+di+Sant%27Alessandro+Pieve+Emanuele" 
+    <!-- Aree Cliccabili con il link aggiornato della nuova Chiesa -->
+    <a href="https://www.google.com/maps/search/?api=1&query=Chiesa+di+Maria+Immacolata+Piazza+Puccini+Pieve+Emanuele" 
        target="_blank" class="link-area btn-chiesa" title="Chiesa"></a>
 
-    <a href="https://www.google.com/maps/search/?api=1&query=Cascina+Quartiago+Bascape" 
+    <a href="https://www.google.com/maps/search/?api=1&query=La+Cascina+Quartiago" 
        target="_blank" class="link-area btn-ristorante" title="Ristorante"></a>
 
     <div onclick="openModal('ibanModal')" class="link-area btn-regalo" title="Pensiero per Camilla"></div>
 
-    <!-- Pulsanti di risposta sovrapposti a quelli della foto -->
     <div onclick="openModal('rsvpModal')" class="link-area btn-si" title="Sì, parteciperò"></div>
 
-    <!-- Pulsante NO con il nuovo numero aggiornato -->
     <a href="https://wa.me/393293073918?text=Mi%20dispiace,%20non%20riuscir%C3%B2%20a%20partecipare%20al%20battesimo%20di%20Camilla." 
        target="_blank" class="link-area btn-no" title="Mi dispiace, non potrò"></a>
   </div>
 
-  <!-- Pop-up Modal Partecipanti (RSVP) -->
+  <!-- Pop-up RSVP -->
   <div id="rsvpModal" class="modal">
     <div class="modal-content">
       <h3>Conferma la presenza 🌸</h3>
@@ -215,27 +243,31 @@
         </select>
       </div>
 
+      <div class="notes-group">
+        <label for="allergies">Intolleranze / Allergie (opzionale):</label>
+        <input type="text" id="allergies" placeholder="es. 1 vegetariano, allergia noci...">
+      </div>
+
       <button class="btn-confirm" onclick="sendWhatsappRSVP()">Conferma e Invia su WhatsApp 📲</button>
       <button class="btn-close" style="padding: 6px 15px; font-size: 0.8rem;" onclick="closeModal('rsvpModal')">Annulla</button>
     </div>
   </div>
 
-  <!-- Pop-up Modal Regalo IBAN (Senza QR Code) -->
+  <!-- Pop-up IBAN -->
   <div id="ibanModal" class="modal">
     <div class="modal-content">
       <h3>Pensiero per Camilla 🌸</h3>
       <p>La vostra partecipazione è la cosa che conta di più per noi.<br>Se volete contribuire con un piccolo pensiero per la crescita e i sogni futuri di Camilla:</p>
 
-      <div class="iban-box">
-        IT85T0306909540100000009299
-      </div>
+      <div class="iban-box" id="ibanText">IT85T0306909540100000009299</div>
+      <button class="btn-copy" onclick="copyIBAN()">📋 Copia IBAN</button>
+
       <p style="font-size: 0.85rem; color: #555; font-weight: bold;">Intestato a:<br>Piazzolla Elio Antonio</p>
-      <button class="btn-close" style="background: #db7a8b;" onclick="closeModal('ibanModal')">Chiudi</button>
+      <button class="btn-close" style="background: #db7a8b; margin-top: 15px;" onclick="closeModal('ibanModal')">Chiudi</button>
     </div>
   </div>
 
   <script>
-    // Nuovo numero telefonico aggiornato
     const mioNumero = "393293073918";
 
     function openModal(id) {
@@ -248,17 +280,28 @@
     function sendWhatsappRSVP() {
       const adults = document.getElementById('adults').value;
       const children = document.getElementById('children').value;
+      const allergies = document.getElementById('allergies').value.trim();
       
       let messaggio = `Ciao! Parteciperò con gioia al battesimo di Camilla! Saremo in totale: ${adults} Adulti`;
       if(children > 0) {
-        messaggio += ` e ${children} Bambini.`;
-      } else {
-        messaggio += `.`;
+        messaggio += ` e ${children} Bambini`;
+      }
+      messaggio += `.`;
+
+      if(allergies !== "") {
+        messaggio += ` Note/Intolleranze: ${allergies}`;
       }
 
       const url = `https://wa.me/${mioNumero}?text=${encodeURIComponent(messaggio)}`;
       window.open(url, '_blank');
       closeModal('rsvpModal');
+    }
+
+    function copyIBAN() {
+      const iban = document.getElementById('ibanText').innerText;
+      navigator.clipboard.writeText(iban).then(() => {
+        alert("IBAN copiato negli appunti!");
+      });
     }
 
     window.onclick = function(event) {
