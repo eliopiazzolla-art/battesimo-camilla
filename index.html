@@ -17,6 +17,7 @@
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     html, body {
       width: 100%;
       min-height: 100vh;
@@ -53,31 +54,66 @@
       border-radius: 50px;
       transition: transform 0.15s ease, background-color 0.15s ease;
     }
+
     .link-area:active {
       transform: scale(0.96);
       background-color: rgba(255, 255, 255, 0.2);
     }
 
     /* Posizionamento pulsanti sui cerchi e sui tasti in fondo */
-    .btn-chiesa { top: 69.5%; left: 15%; width: 25%; height: 13%; border-radius: 50%; }
-    .btn-ristorante { top: 69.5%; left: 42.5%; width: 25%; height: 13%; border-radius: 50%; }
-    .btn-regalo { top: 69.5%; left: 70%; width: 25%; height: 13%; border-radius: 50%; }
-    
-    .btn-si { top: 91.2%; left: 6%; width: 42%; height: 6.5%; }
-    .btn-no { top: 91.2%; left: 52%; width: 42%; height: 6.5%; }
+    .btn-chiesa {
+      top: 69.5%;
+      left: 15%;
+      width: 25%;
+      height: 13%;
+      border-radius: 50%;
+    }
+
+    .btn-ristorante {
+      top: 69.5%;
+      left: 42.5%;
+      width: 25%;
+      height: 13%;
+      border-radius: 50%;
+    }
+
+    .btn-regalo {
+      top: 69.5%;
+      left: 70%;
+      width: 25%;
+      height: 13%;
+      border-radius: 50%;
+    }
+
+    .btn-si {
+      top: 91.2%;
+      left: 6%;
+      width: 42%;
+      height: 6.5%;
+    }
+
+    .btn-no {
+      top: 91.2%;
+      left: 52%;
+      width: 42%;
+      height: 6.5%;
+    }
 
     /* Pop-up (Modal) */
     .modal {
       display: none;
       position: fixed;
       z-index: 10;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
       background-color: rgba(0, 0, 0, 0.6);
       justify-content: center;
       align-items: center;
       padding: 20px;
     }
+
     .modal-content {
       background: #ffffff;
       padding: 25px;
@@ -88,13 +124,31 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.2);
       animation: fadeIn 0.3s ease;
     }
+
     @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
-    .modal-content h3 { color: #db7a8b; margin-bottom: 12px; }
-    .modal-content p { color: #555; font-size: 0.95rem; margin-bottom: 15px; line-height: 1.4; }
-    
+
+    .modal-content h3 {
+      color: #db7a8b;
+      margin-bottom: 12px;
+    }
+
+    .modal-content p {
+      color: #555;
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+      line-height: 1.4;
+    }
+
     /* Form Selezione Partecipanti */
     .counter-group {
       display: flex;
@@ -106,10 +160,12 @@
       border-radius: 12px;
       border: 1px solid #f0d6d8;
     }
+
     .counter-group label {
       font-weight: bold;
       color: #444;
     }
+
     .counter-group select {
       padding: 6px 12px;
       border-radius: 8px;
@@ -123,6 +179,7 @@
       text-align: left;
       margin-bottom: 15px;
     }
+
     .notes-group label {
       display: block;
       font-size: 0.85rem;
@@ -130,6 +187,7 @@
       color: #555;
       margin-bottom: 5px;
     }
+
     .notes-group input {
       width: 100%;
       padding: 8px 12px;
@@ -153,7 +211,7 @@
       margin-top: 10px;
       margin-bottom: 10px;
     }
-    
+
     .btn-copy {
       background: #e8a7b3;
       color: white;
@@ -166,7 +224,10 @@
       margin-bottom: 15px;
       transition: background 0.2s;
     }
-    .btn-copy:active { background: #db7a8b; }
+
+    .btn-copy:active {
+      background: #db7a8b;
+    }
 
     .btn-confirm {
       background: #db7a8b;
@@ -181,8 +242,11 @@
       margin-top: 5px;
       transition: background-color 0.2s;
     }
-    .btn-confirm:active { background: #c26575; }
-    
+
+    .btn-confirm:active {
+      background: #c26575;
+    }
+
     .btn-close {
       background: #aaa;
       color: white;
@@ -195,120 +259,296 @@
     }
   </style>
 </head>
+
 <body>
 
   <div class="card-container">
-    <img src="invito.png" alt="Invito Battesimo Camilla" class="card-image">
 
-    <!-- Aree Cliccabili con il link aggiornato della nuova Chiesa -->
-    <a href="https://www.google.com/maps/search/?api=1&query=Chiesa+di+Maria+Immacolata+Piazza+Puccini+Pieve+Emanuele" 
-       target="_blank" class="link-area btn-chiesa" title="Chiesa"></a>
+    <img src="invito.png"
+         alt="Invito Battesimo Camilla"
+         class="card-image">
 
-    <a href="https://www.google.com/maps/search/?api=1&query=La+Cascina+Quartiago" 
-       target="_blank" class="link-area btn-ristorante" title="Ristorante"></a>
+    <!-- CHIESA -->
+    <a href="https://www.google.com/maps/search/?api=1&query=Chiesa+di+Maria+Immacolata+Piazza+Puccini+Pieve+Emanuele"
+       target="_blank"
+       class="link-area btn-chiesa"
+       title="Chiesa">
+    </a>
 
-    <div onclick="openModal('ibanModal')" class="link-area btn-regalo" title="Pensiero per Camilla"></div>
+    <!-- RISTORANTE / CASCINA QUARTIAGO -->
+    <!--
+      Google Maps:
+      Partenza = posizione attuale dell'invitato
+      Tappa intermedia = 45.3523671, 9.2954991
+      Destinazione = Cascina Quartiago
+    -->
+    <a href="https://www.google.com/maps/dir/?api=1&destination=Cascina+Quartiago,+Via+Frazione+Beccalz%C3%B9,+27010+Bascape%27+PV&waypoints=45.3523671,9.2954991&travelmode=driving"
+       target="_blank"
+       class="link-area btn-ristorante"
+       title="Ristorante">
+    </a>
 
-    <div onclick="openModal('rsvpModal')" class="link-area btn-si" title="Sì, parteciperò"></div>
+    <!-- REGALO -->
+    <div onclick="openModal('ibanModal')"
+         class="link-area btn-regalo"
+         title="Pensiero per Camilla">
+    </div>
 
-    <a href="https://wa.me/393293073918?text=Mi%20dispiace,%20non%20riuscir%C3%B2%20a%20partecipare%20al%20battesimo%20di%20Camilla." 
-       target="_blank" class="link-area btn-no" title="Mi dispiace, non potrò"></a>
+    <!-- SI -->
+    <div onclick="openModal('rsvpModal')"
+         class="link-area btn-si"
+         title="Sì, parteciperò">
+    </div>
+
+    <!-- NO -->
+    <a href="https://wa.me/393293073918?text=Mi%20dispiace,%20non%20riuscir%C3%B2%20a%20partecipare%20al%20battesimo%20di%20Camilla."
+       target="_blank"
+       class="link-area btn-no"
+       title="Mi dispiace, non potrò">
+    </a>
+
   </div>
 
-  <!-- Pop-up RSVP -->
+
+  <!-- ========================= -->
+  <!-- POP-UP RSVP -->
+  <!-- ========================= -->
+
   <div id="rsvpModal" class="modal">
+
     <div class="modal-content">
+
       <h3>Conferma la presenza 🌸</h3>
-      <p>Indica quanti sarete per aiutarci ad organizzare i posti al ristorante:</p>
-      
+
+      <p>
+        Indica quanti sarete per aiutarci ad organizzare
+        i posti al ristorante:
+      </p>
+
       <div class="counter-group">
-        <label for="adults">Adulti:</label>
+
+        <label for="adults">
+          Adulti:
+        </label>
+
         <select id="adults">
+
           <option value="1">1</option>
           <option value="2" selected>2</option>
           <option value="3">3</option>
           <option value="4">4</option>
           <option value="5">5</option>
+
         </select>
+
       </div>
 
+
       <div class="counter-group">
-        <label for="children">Bambini:</label>
+
+        <label for="children">
+          Bambini:
+        </label>
+
         <select id="children">
+
           <option value="0" selected>0</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
           <option value="4">4</option>
+
         </select>
+
       </div>
+
 
       <div class="notes-group">
-        <label for="allergies">Intolleranze / Allergie (opzionale):</label>
-        <input type="text" id="allergies" placeholder="es. 1 vegetariano, allergia noci...">
+
+        <label for="allergies">
+          Intolleranze / Allergie (opzionale):
+        </label>
+
+        <input
+          type="text"
+          id="allergies"
+          placeholder="es. 1 vegetariano, allergia noci..."
+        >
+
       </div>
 
-      <button class="btn-confirm" onclick="sendWhatsappRSVP()">Conferma e Invia su WhatsApp 📲</button>
-      <button class="btn-close" style="padding: 6px 15px; font-size: 0.8rem;" onclick="closeModal('rsvpModal')">Annulla</button>
+
+      <button class="btn-confirm"
+              onclick="sendWhatsappRSVP()">
+
+        Conferma e Invia su WhatsApp 📲
+
+      </button>
+
+
+      <button class="btn-close"
+              style="padding: 6px 15px; font-size: 0.8rem;"
+              onclick="closeModal('rsvpModal')">
+
+        Annulla
+
+      </button>
+
     </div>
+
   </div>
 
-  <!-- Pop-up IBAN -->
+
+  <!-- ========================= -->
+  <!-- POP-UP IBAN -->
+  <!-- ========================= -->
+
   <div id="ibanModal" class="modal">
+
     <div class="modal-content">
-      <h3>Pensiero per Camilla 🌸</h3>
-      <p>La vostra partecipazione è la cosa che conta di più per noi.<br>Se volete contribuire con un piccolo pensiero per la crescita e i sogni futuri di Camilla:</p>
 
-      <div class="iban-box" id="ibanText">IT85T0306909540100000009299</div>
-      <button class="btn-copy" onclick="copyIBAN()">📋 Copia IBAN</button>
+      <h3>
+        Pensiero per Camilla 🌸
+      </h3>
 
-      <p style="font-size: 0.85rem; color: #555; font-weight: bold;">Intestato a:<br>Piazzolla Elio Antonio</p>
-      <button class="btn-close" style="background: #db7a8b; margin-top: 15px;" onclick="closeModal('ibanModal')">Chiudi</button>
+      <p>
+        La vostra partecipazione è la cosa che conta di più per noi.<br>
+        Se volete contribuire con un piccolo pensiero per la crescita
+        e i sogni futuri di Camilla:
+      </p>
+
+
+      <div class="iban-box"
+           id="ibanText">
+
+        IT85T0306909540100000009299
+
+      </div>
+
+
+      <button class="btn-copy"
+              onclick="copyIBAN()">
+
+        📋 Copia IBAN
+
+      </button>
+
+
+      <p style="font-size: 0.85rem; color: #555; font-weight: bold;">
+
+        Intestato a:<br>
+        Piazzolla Elio Antonio
+
+      </p>
+
+
+      <button class="btn-close"
+              style="background: #db7a8b; margin-top: 15px;"
+              onclick="closeModal('ibanModal')">
+
+        Chiudi
+
+      </button>
+
     </div>
+
   </div>
+
+
+  <!-- ========================= -->
+  <!-- JAVASCRIPT -->
+  <!-- ========================= -->
 
   <script>
+
     const mioNumero = "393293073918";
 
+
     function openModal(id) {
+
       document.getElementById(id).style.display = 'flex';
+
     }
+
+
     function closeModal(id) {
+
       document.getElementById(id).style.display = 'none';
+
     }
+
 
     function sendWhatsappRSVP() {
-      const adults = document.getElementById('adults').value;
-      const children = document.getElementById('children').value;
-      const allergies = document.getElementById('allergies').value.trim();
-      
-      let messaggio = `Ciao! Parteciperò con gioia al battesimo di Camilla! Saremo in totale: ${adults} Adulti`;
-      if(children > 0) {
-        messaggio += ` e ${children} Bambini`;
+
+      const adults =
+        document.getElementById('adults').value;
+
+      const children =
+        document.getElementById('children').value;
+
+      const allergies =
+        document.getElementById('allergies').value.trim();
+
+
+      let messaggio =
+        `Ciao! Parteciperò con gioia al battesimo di Camilla! Saremo in totale: ${adults} Adulti`;
+
+
+      if (children > 0) {
+
+        messaggio +=
+          ` e ${children} Bambini`;
+
       }
+
+
       messaggio += `.`;
 
-      if(allergies !== "") {
-        messaggio += ` Note/Intolleranze: ${allergies}`;
+
+      if (allergies !== "") {
+
+        messaggio +=
+          ` Note/Intolleranze: ${allergies}`;
+
       }
 
-      const url = `https://wa.me/${mioNumero}?text=${encodeURIComponent(messaggio)}`;
+
+      const url =
+        `https://wa.me/${mioNumero}?text=${encodeURIComponent(messaggio)}`;
+
+
       window.open(url, '_blank');
+
       closeModal('rsvpModal');
+
     }
+
 
     function copyIBAN() {
-      const iban = document.getElementById('ibanText').innerText;
+
+      const iban =
+        document.getElementById('ibanText').innerText;
+
+
       navigator.clipboard.writeText(iban).then(() => {
+
         alert("IBAN copiato negli appunti!");
+
       });
+
     }
 
+
     window.onclick = function(event) {
+
       if (event.target.classList.contains('modal')) {
+
         event.target.style.display = "none";
+
       }
+
     }
+
   </script>
 
 </body>
